@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="小林的个人主页，分享图片设计、视频剪辑和网页学习作品。">
+  <meta name="keywords" content="小林,个人主页,图片设计,视频剪辑,网页学习">
+  <meta name="author" content="小林">
+  <title>逸风｜我的个人主页</title>
+
+  <style>
+    :root {
+      --blue: #1769e0;
+      --dark: #12233f;
+      --text: #34445c;
+      --muted: #718096;
+      --bg: #f5f8fc;
+      --white: #ffffff;
+      --line: #e3eaf4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      color: var(--text);
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 68px;
+    }
+
+    .logo {
+      color: var(--dark);
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 56px;
+      min-height: 650px;
+      padding: 80px 0;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      max-width: 650px;
+      color: var(--dark);
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 560px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 20px;
+      border: 1px solid var(--blue);
+      border-radius: 6px;
+      color: var(--blue);
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .button.primary {
+      color: white;
+      background: var(--blue);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(23, 105, 224, 0.18);
+    }
+
+    .profile-panel {
+      position: relative;
+      min-height: 380px;
+      padding: 30px;
+      overflow: hidden;
+      border: 1px solid #cfe0f8;
+      border-radius: 8px;
+      background: #e8f1ff;
+    }
+
+    .profile-circle {
+      display: grid;
+      place-items: center;
+      width: 190px;
+      height: 190px;
+      margin: 22px auto 35px;
+      border: 10px solid white;
+      border-radius: 50%;
+      color: white;
+      background: var(--blue);
+      box-shadow: 0 16px 30px rgba(23, 105, 224, 0.22);
+      font-size: 72px;
+      font-weight: 800;
+    }
+
+    .profile-panel h2 {
+      color: var(--dark);
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .profile-panel p {
+      margin-top: 8px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .section {
+      padding: 90px 0;
+      background: var(--white);
+    }
+
+    .section.alt {
+      background: var(--bg);
+    }
+
+    .section-heading {
+      margin-bottom: 34px;
+    }
+
+    .section-heading h2 {
+      color: var(--dark);
+      font-size: 34px;
+      line-height: 1.25;
+    }
+
+    .section-heading p {
+      margin-top: 8px;
+      color: var(--muted);
+    }
+
+    .about-text {
+      max-width: 760px;
+      font-size: 18px;
+    }
+
+    .skills,
+    .works {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .skill,
+    .work {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+    }
+
+    .skill strong,
+    .work strong {
+      display: block;
+      color: var(--dark);
+      font-size: 17px;
+    }
+
+    .skill p,
+    .work p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .work {
+      min-height: 160px;
+      border-top: 3px solid var(--blue);
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .contact-box {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+    }
+
+    .contact-box h3 {
+      color: var(--dark);
+      font-size: 22px;
+    }
+
+    .contact-box p {
+      margin-top: 10px;
+      color: var(--muted);
+    }
+
+    .footer {
+      padding: 26px 0;
+      color: #8290a5;
+      background: var(--dark);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 28px, 620px);
+      }
+
+      .nav-links {
+        gap: 12px;
+        font-size: 12px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 38px;
+        min-height: auto;
+        padding: 68px 0;
+      }
+
+      h1 {
+        font-size: 48px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .profile-panel {
+        min-height: 320px;
+      }
+
+      .skills,
+      .works {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 64px 0;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px 0;
+      }
+
+      .skills,
+      .works {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="nav container" aria-label="主导航">
+      <a class="logo" href="#top">小林<span>.</span></a>
+
+      <div class="nav-links">
+        <a href="#about">关于我</a>
+        <a href="#skills">技能</a>
+        <a href="#works">作品</a>
+        <a href="#contact">联系</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero container">
+      <div>
+        <span class="eyebrow">WELCOME TO MY HOMEPAGE</span>
+        <h1>你好，我是小林</h1>
+        <p>一个喜欢设计和学习新技术的人。</p>
+
+        <div class="actions">
+          <a class="button primary" href="#works">查看作品</a>
+          <a class="button" href="#contact">联系我</a>
+        </div>
+      </div>
+
+      <div class="profile-panel">
+        <div class="profile-circle">林</div>
+        <h2>设计 · 剪辑 · 网页</h2>
+        <p>持续学习，把想法变成作品。</p>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <h2>关于我</h2>
+          <p>认识一下正在不断学习和创作的小林</p>
+        </div>
+
+        <p class="about-text">
+          我平时喜欢做图片、剪视频，也在学习做网站。
+          我喜欢把想法变成实际作品，也会持续学习新的工具和技术。
+        </p>
+      </div>
+    </section>
+
+    <section class="section alt" id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <h2>我的技能</h2>
+          <p>目前正在学习和实践的方向</p>
+        </div>
+
+        <div class="skills">
+          <div class="skill">
+            <strong>图片设计</strong>
+            <p>尝试用视觉表达想法和创意。</p>
+          </div>
+
+          <div class="skill">
+            <strong>视频剪辑</strong>
+            <p>记录生活，制作有趣的视频内容。</p>
+          </div>
+
+          <div class="skill">
+            <strong>网页学习</strong>
+            <p>学习 HTML、CSS 和 JavaScript。</p>
+          </div>
+
+          <div class="skill">
+            <strong>创意制作</strong>
+            <p>不断尝试新的工具和创作方式。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="works">
+      <div class="container">
+        <div class="section-heading">
+          <h2>我的作品</h2>
+          <p>这里可以逐步展示你的创作内容</p>
+        </div>
+
+        <div class="works">
+          <article class="work">
+            <strong>图片设计</strong>
+            <p>作品正在整理中，敬请期待。</p>
+          </article>
+
+          <article class="work">
+            <strong>视频剪辑</strong>
+            <p>作品正在整理中，敬请期待。</p>
+          </article>
+
+          <article class="work">
+            <strong>网页项目</strong>
+            <p>作品正在整理中，敬请期待。</p>
+          </article>
+
+          <article class="work">
+            <strong>其他创作</strong>
+            <p>作品正在整理中，敬请期待。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="contact">
+      <div class="container contact">
+        <div class="contact-box">
+          <h3>联系我</h3>
+          <p>欢迎通过微信或邮箱与我交流。</p>
+        </div>
+
+        <div class="contact-box">
+          <h3>保持联系</h3>
+          <p>联系方式可以在确认后添加到这里。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2025 小林的个人主页</div>
+  </footer>
+</body>
+</html>
